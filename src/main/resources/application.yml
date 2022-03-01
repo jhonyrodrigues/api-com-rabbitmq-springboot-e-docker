@@ -3,11 +3,11 @@ server:
 
 spring:
   rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
     request:
-      host: localhost
-      port: 5672
-      username: guest
-      password: guest
       exchange:
         producer: ex.producer.aula-spring
       routing-key:
