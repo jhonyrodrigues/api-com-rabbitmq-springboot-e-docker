@@ -1,7 +1,7 @@
 package br.com.spring.producer.amqp.impl;
 
 import br.com.spring.producer.amqp.AmqpProducer;
-import br.com.spring.producer.dto.Message;
+import br.com.spring.producer.dto.MessageQueue;
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.AmqpRejectAndDontRequeueException;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor
 @Component
-public class ProducerRabbitMQ implements AmqpProducer<Message> {
+public class ProducerRabbitMQ implements AmqpProducer<MessageQueue> {
 
     private final RabbitTemplate rabbitTemplate;
 
@@ -21,7 +21,7 @@ public class ProducerRabbitMQ implements AmqpProducer<Message> {
     private String exchange;
 
     @Override
-    public void producer(Message message) {
+    public void producer(MessageQueue message) {
         try {
             rabbitTemplate.convertAndSend(exchange, queue, message);
         } catch (Exception ex) {
